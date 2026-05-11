@@ -10,7 +10,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'main',
-                    credentialsId: 'github-ssh',
+                    credentialsId: 'github-new',
                     url: 'git@github.com:Nagendrakumarredd/poc-1.git'
             }
         }
