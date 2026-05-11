@@ -22,5 +22,15 @@ pipeline {
                 }
             }
         }
+        stage('SonarQube Analysis') {
+    steps {
+        dir('poc1-app') {
+            withSonarQubeEnv('sonarqube-server') {
+                sh 'mvn sonar:sonar'
+            }
+        }
+    }
+}
+
     }
 }
