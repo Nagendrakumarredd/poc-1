@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+
+    tools {
+        jdk 'jdk11'
+        maven 'maven3'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    credentialsId: 'github-ssh',
+                    url: 'git@github.com:Nagendrakumarredd/poc-1.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                dir('poc1-app') {
+                    sh 'mvn clean package'
+                }
+            }
+        }
+    }
+}
