@@ -31,6 +31,15 @@ pipeline {
         }
     }
 }
+        stage('Dependency Vulnerability Scan') {
+    steps {
+        dir('poc1-app') {
+            dependencyCheck additionalArguments: '--scan .',
+                           odcInstallation: 'dependency-check'
+            dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+        }
+    }
+}
 
     }
 }
